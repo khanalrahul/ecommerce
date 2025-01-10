@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body{
+    font-family: "Inter", serif;
+}
+
+:root{
+    --primary:#009900;
+    --light-primary:#0099001a;
+    --secondary:#ffcc33;
+    --light-secondary:#ffcc331a;
+}
+
+.container{
+    width:86%;
+    margin:auto;
+}
+
+.bg-primary{
+    background-color: var(--primary);
+}
+.bg-light-primary{
+    background-color: var(--light-primary);
+}
+
+.bg-secondary{
+    background-color: var(--secondary);
+}
+.primary{
+    color: var(--primary);
+}
+.secondary{
+    color: var(--secondary);
+}

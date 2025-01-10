@@ -17,16 +17,27 @@ class CompanyResource extends Resource
 {
     protected static ?string $model = Company::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'fas-building';
+    protected static ?string $navigationGroup = 'Settings';
+    protected static ?string $modelLabel = "Company";
+    protected static ?string $pluralModelLabel = "Company";
+    protected static ?int $navigationSort=1;
+
+    public static function canCreate(): bool
+    {
+        $compnay = Company::first();
+        if (!$compnay) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('logo')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('address')
@@ -49,12 +60,14 @@ class CompanyResource extends Resource
                 Forms\Components\TextInput::make('youtube')
                     ->maxLength(255)
                     ->default(null),
-                Forms\Components\Textarea::make('terms')
+                Forms\Components\RichEditor::make('terms')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('policy')
+                Forms\Components\RichEditor::make('policy')
                     ->required()
                     ->columnSpanFull(),
+                Forms\Components\FileUpload::make('logo')
+                    ->required()
             ]);
     }
 
@@ -64,7 +77,7 @@ class CompanyResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('logo')
+                Tables\Columns\ImageColumn::make('logo')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('address')
                     ->searchable(),

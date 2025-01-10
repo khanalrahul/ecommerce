@@ -13,7 +13,8 @@ class ViewCategory extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\EditAction::make(),
+            Actions\EditAction::make()
+            ->keyBindings(['command+alt+c','ctrl+alt+c']),
         ];
     }
 }
